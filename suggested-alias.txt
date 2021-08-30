@@ -1,0 +1,28 @@
+alias start_apache='docker run --rm -p ${PORT-80}:80 -e XDEBUG_MODE="off" -v `pwd`:/var/www/html rasteiner/common-php-apache:php7-dev'
+alias start_apached='docker run -d --rm -p ${PORT-80}:80 -e XDEBUG_MODE="off" -v `pwd`:/var/www/html rasteiner/common-php-apache:php7-dev'
+alias start_apached_debug='docker run -d --rm -p ${PORT-80}:80 -e XDEBUG_MODE="debug" -e XDEBUG_CONFIG="client_host=192.168.1.66" -v `pwd`:/var/www/html rasteiner/common-php-apache:php7-dev'
+alias start_apached_profile='docker run -d --rm -p ${PORT-80}:80 -e XDEBUG_MODE="profile" -e XDEBUG_CONFIG="client_host=192.168.1.66 output_dir=/var/www/html/.xdebug" -v `pwd`:/var/www/html rasteiner/common-php-apache:php7-dev'
+
+function stop_web() {
+    local container=`docker ps -q -f expose=80`
+    if [ -n "$container" ]; then
+        docker stop $container
+    fi
+}
+
+function attach_web() {
+    local container=`docker ps -q -f expose=80`
+    if [ -n "$container" ]; then
+        docker exec -it $container bash
+    fi
+}
+
+alias apache='stop_web; start_apache'
+alias apached='stop_web; start_apached'
+
+alias start_apache8='docker run --rm -p ${PORT-80}:80 -e XDEBUG_MODE="off" -v `pwd`:/var/www/html rasteiner/common-php-apache:php8-dev'
+alias start_apached8='docker run -d --rm -p ${PORT-80}:80 -e XDEBUG_MODE="off" -v `pwd`:/var/www/html rasteiner/common-php-apache:php8-dev'
+alias start_apached8_debug='docker run -d --rm -p ${PORT-80}:80 -e XDEBUG_MODE="debug" -e XDEBUG_CONFIG="client_host=192.168.1.66" -v `pwd`:/var/www/html rasteiner/common-php-apache:php8-dev'
+alias start_apached8_profile='docker run -d --rm -p ${PORT-80}:80 -e XDEBUG_MODE="profile" -e XDEBUG_CONFIG="client_host=192.168.1.66 output_dir=/var/www/html/.xdebug" -v `pwd`:/var/www/html rasteiner/common-php-apache:php8-dev'
+
+alias apache8='stop_web; start_apache8'

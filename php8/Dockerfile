@@ -1,9 +1,9 @@
-FROM php:7-apache as base
+FROM php:8-apache AS base
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync
 
-RUN install-php-extensions gd exif zip pdo_mysql gettext intl mcrypt imagick opcache apcu iconv
+RUN install-php-extensions gd exif zip pdo_mysql gettext intl mcrypt imagick opcache apcu  iconv
 RUN a2enmod rewrite
 
 FROM base as dev
