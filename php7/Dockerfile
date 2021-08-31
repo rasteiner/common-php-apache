@@ -4,7 +4,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions && sync
 
 RUN install-php-extensions gd exif zip pdo_mysql gettext intl mcrypt imagick opcache apcu iconv
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers http2 setenvif
 
 FROM base as dev
 
