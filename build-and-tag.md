@@ -1,3 +1,10 @@
+Build PHP81 images
+```bash
+docker build --target base -t rasteiner/common-php-apache:php81 php81
+docker build -t rasteiner/common-php-apache:php81-dev php81
+```
+
+
 Build PHP8 images
 ```bash
 docker build --target base -t rasteiner/common-php-apache:php8 php8
